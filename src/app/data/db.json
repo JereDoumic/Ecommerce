@@ -1,0 +1,54 @@
+{
+  "categories": [
+    {
+      "id": "1",
+      "category": "Zapatillas"
+    },
+    {
+      "id": "2",
+      "category": "Remeras"
+    },
+    {
+      "id": "3",
+      "category": "Pantalones"
+    },
+    {
+      "id": "4",
+      "category": "Electronica"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "title": "zapatillas adidas",
+      "description": "zapatillas adidas veranos",
+      "category": "1",
+      "price": 100,
+      "image": "https://pacogarcia.vtexassets.com/arquivos/ids/178991-800-1067?v=637846810340970000&width=800&height=1067&aspect=true"
+    },
+    {
+      "id": "2",
+      "title": "Remera nike",
+      "description": "remera nike verano",
+      "category": "2",
+      "price": 80,
+      "image": "https://www.stockcenter.com.ar/on/demandware.static/-/Sites-365-dabra-catalog/default/dwd2c6f993/products/NIDQ9020-010/NIDQ9020-010-1.JPG"
+    },
+    {
+      "id": "3",
+      "title": "Pantalon adidas",
+      "description": "pantalon adidas primavera",
+      "category": "3",
+      "price": 35,
+      "image": "data:image/jpeg;base64,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"
+    },
+    {
+      "id": "4",
+      "title": "nootbook",
+      "description": "nootbook gamer",
+      "category": "4",
+      "price": 500,
+      "image": "https://http2.mlstatic.com/D_NQ_NP_707174-MLA47933392879_102021-O.webp"
+    }
+  ]
+}

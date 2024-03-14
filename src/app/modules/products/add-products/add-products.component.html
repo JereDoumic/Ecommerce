@@ -1,0 +1,40 @@
+<app-nav-bar></app-nav-bar>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="form-group">
+                <form autocomplete="off" [formGroup]="productForm" (ngSubmit)="addProduct()">
+                    <label for="exampleInputEmail1" class="form-label mt-4">Titulo: </label>
+                    <input type="text" class="form-control"
+                             placeholder="Ingrese el titulo" formControlName="title">
+
+                    <br>
+                    <label for="exampleInputEmail1" class="form-label mt-4">Descripción: </label>
+                    <input type="text" class="form-control"
+                            placeholder="Ingrese una descripción" formControlName="description">
+
+                    <br>
+                    <label for="exampleInputEmail1" class="form-label mt-4">Categoria: </label>
+                    <select class="form-select" id="exampleSelect1" formControlName="category">
+                        @for(category of categoriesList; track category.id){
+                            <option value="{{category.id}}">{{category.category}}</option>
+                        }
+                    </select>
+
+                    <br>
+                    <label for="exampleInputEmail1" class="form-label mt-4">Precio: </label>
+                    <input type="number" class="form-control"
+                            placeholder="Ingrese el precio" formControlName="price">
+                    
+                    <br>
+                    <label for="formFile" class="form-label mt-4">Imagen</label>
+                      <input class="form-control" type="text" id="formFile" formControlName="image">
+
+                    <br> <br>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

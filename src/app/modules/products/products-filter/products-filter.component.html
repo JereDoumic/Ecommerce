@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 ">
+                <fieldset>
+                  <fieldset class="form-group">
+                    <legend class="mt-5">Filtrar busqueda</legend>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1" class="form-label mt-3">Buscar</label>
+                      <input (input)="setName($event)" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese un producto...">
+                    </div>  
+                      <label for="customRange1" class="form-label mt-3">Precio desde: </label>
+                      <span> ${{priceSince}}</span>
+                      <input type="range" class="form-range" min="1" max="100" value="1"
+                        (input)="setPrice($event)">
+                        <div class="form-group">
+                          <label for="exampleSelect1" class="form-label mt-3">Categoria</label>
+                          <select (input)="setCategory($event)" class="form-select" >
+                            <option selected value="all">Todas</option>
+                            @for(category of this.categories; track category.id){
+                              <option selected value={{category.id}}>{{category.category}}</option>
+                            }
+                            <!-- <option selected value="all">Todas</option>
+                            <option value="jewelery">Joyeria</option>
+                            <option value="men's clothing">Ropa de hombre</option>
+                            <option value="women's clothing">Ropa de mujer</option>
+                            <option value="electronics">Electronica</option> -->
+                          </select>
+                        </div>
+                  </fieldset>
+                </fieldset>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,18 @@
+<app-nav-bar></app-nav-bar>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <app-products-filter (priceEmitter)="setPrice($event)" 
+                                (categoryEmitter)="setCategory($event)"
+                                (nameEmitter)="setName($event)">
+            </app-products-filter>
+        </div>
+        <div class="col-9">
+            <app-list-products 
+                [priceSince] = "price" 
+                [category]="category"
+                [name] = "name">
+            </app-list-products>
+        </div>
+    </div>
+</div>

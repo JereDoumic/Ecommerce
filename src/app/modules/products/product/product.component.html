@@ -1,0 +1,26 @@
+<app-nav-bar></app-nav-bar>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="p-4">
+            <div class="card mb-3 " style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src={{product?.image}} class="img-fluid rounded-start" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">{{product?.title}}</h5>
+                      <p class="card-text">{{product?.description}}</p>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary">comprar ahora</button>
+                  <button class="btn btn-primary" (click)="addToCart()">+🛒</button>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

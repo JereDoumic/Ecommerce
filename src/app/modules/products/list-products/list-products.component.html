@@ -1,0 +1,105 @@
+
+<div class="container">
+    <div class="row">
+      @if(productList.length <= 0 && searching == true){
+        <h1>
+          Producto no encontrado
+        </h1>
+      } @else {
+        @for(product of productList; track product.id){
+                <div class="col text-center">
+                <div class="card mt-4" style="width: 18rem;" >
+                  <img src={{product.image}} class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">{{product.title}}</h5>
+                    <p class="card-text">{{product.description}}</p>
+                    <strong>${{product.price}}</strong>
+                    <br><br>
+                    @if(user == "admin"){
+                      <a  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        (click)="modify(product)">MODIFICAR</a>
+                      <a  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDelete"
+                      (click)="deleteModal(product)">ELIMINAR</a>
+                    } @else {
+                      <a  class="btn btn-primary" (click)="goProduct(product)">COMPRAR</a>
+                    }
+                  </div>
+                </div>
+              </div>
+              }
+            }
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar producto</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body"> <!--  (ngSubmit)="addProduct()" -->
+        <form autocomplete="off" [formGroup]="productForm">
+          <label for="exampleInputEmail1" class="form-label mt-4">Titulo: </label>
+          <input type="text" class="form-control"
+                   placeholder="Ingrese el titulo" formControlName="title">
+
+          <br>
+          <label for="exampleInputEmail1" class="form-label mt-4">Descripción: </label>
+          <input type="text" class="form-control"
+                  placeholder="Ingrese una descripción" formControlName="description">
+
+          <br>
+          <label for="exampleInputEmail1" class="form-label mt-4">Categoria: </label>
+          <select class="form-select" id="exampleSelect1" formControlName="category">
+               @for(category of categoriesList; track category.id){
+                  <option value="{{category.id}}">{{category.category}}</option>
+               } 
+          </select>
+
+          <br>
+          <label for="exampleInputEmail1" class="form-label mt-4">Precio: </label>
+          <input type="number" class="form-control"
+                  placeholder="Ingrese el precio" formControlName="price">
+          
+          <br>
+          <label for="formFile" class="form-label mt-4">Imagen</label>
+            <input class="form-control" type="text" id="formFile" formControlName="image">
+
+          
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="modifyProduct()">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Delete Product -->
+<div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Seguro que desea eliminar este producto?</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="card mt-4" style="width: 18rem;" >
+          <img src={{product?.image}} class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">{{product?.title}}</h5>
+            <p class="card-text">{{product?.description}}</p>
+            <strong>${{product?.price}}</strong>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="deleteProduct()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
