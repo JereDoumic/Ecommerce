@@ -4,6 +4,7 @@ export interface IProduct{
     category: number | null;
     description: string | null;
     price: number | null;
+    quantity: number | null;
 }
 
 export interface ICategory{

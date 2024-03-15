@@ -20,6 +20,12 @@
           <li>
             <a class="nav-link cursor" (click)="goLogin()">Iniciar sesion</a>
           </li>
+          <li class="pl-5">
+            <div class="cart">
+              <i class="fa-solid fa-cart-shopping cursor" (click)="goCart()"></i>
+              <span class="cart-text">{{this.quantity}}</span>
+            </div>
+          </li>
         </ul>
       </div>
     </div>

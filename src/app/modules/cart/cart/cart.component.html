@@ -1,0 +1,42 @@
+<app-nav-bar></app-nav-bar>
+<div class="container">
+    <div class="row">
+        <div class="col left-div p-4">
+            @for(product of this.productList; track product.id){
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src={{product.image}} class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                            <h5 class="card-title">{{product.title}}</h5>
+                            <p class="card-text">{{product.description}}</p>
+                            <p class="card-text"><small class="text-body-secondary">precio unitario: ${{product.price}}</small></p>
+                            <p class="card-text"><small class="text-body-secondary">cantidad: {{product.quantity}}</small></p>
+                            <p class="card-text">Total: ${{product.quantity! * product.price!}}</p>
+                            <i class="fa-solid fa-trash cursor" (click)="removeProductToCart(product)"></i>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" (click)="removeToCart(product)" [disabled]="product.quantity! < 2">🛒-</button>
+                        <button class="btn btn-primary" (click)="addToCart(product)">🛒+</button>
+                    </div>
+                  </div>
+            }
+            @if(this.productList.length > 0){
+                <div class="d-grid gap-2">
+                    <button class="btn btn-lg btn-primary" type="button" (click)="clearCart()">Vaciar carrito 🛒</button>
+                </div>
+            }
+        </div>
+        <div class="col right-div p-2">
+            <div class="card border-primary mb-3" style="max-width: 20rem;">
+                <div class="card-header">Resumen de la compra: </div>
+                <div class="card-body">
+                  <p>productos: {{this.quantity}}</p>
+                  <h5 class="card-text">total: ${{this.total}}</h5>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
