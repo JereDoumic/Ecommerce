@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+  }
+  
+  .left-div {
+    flex: 1;
+  }
+  
+  .right-div {
+    flex: 1; 
+    margin-left: 200px;
+  }
+
+.cursor{
+  cursor: pointer;
+}
+  

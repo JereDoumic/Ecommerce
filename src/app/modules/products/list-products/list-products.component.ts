@@ -79,7 +79,8 @@ export class ListProductsComponent implements OnInit, OnChanges{
       description: this.productForm.value.description,
       category: this.productForm.value.category,
       price: this.productForm.value.price,
-      image: this.product?.image || null
+      image: this.product?.image || null,
+      quantity: 1
     }
     console.log(this.product?.id);
     this._productService.updateProduct(PRODUCT).subscribe(res=>{

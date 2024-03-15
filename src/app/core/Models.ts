@@ -7,14 +7,17 @@ export class Product implements Product{
     description: string | null;
     price: number | null;
     image: string | null;
+    quantity: number | null;
 
-    constructor(id: number, title: string, category: number, description: string, price: number, image: string){
+    constructor(id: number, title: string, category: number, description: string, price: number, image: string,
+                quantity: number){
         this.id = id;
         this.title = title;
         this.category = category;
         this.description = description;
         this.price = price;
         this.image = image;
+        this.quantity = quantity
     }
 }
 
