@@ -55,6 +55,10 @@ export class CartComponent implements OnInit{
     } else{
       this.dataService.removeQuantity();
     }
+    if(this.productList.length < 1){
+      this.total = 0;
+      this.quantity = 0;
+    }
   }
 
   clearCart(){
