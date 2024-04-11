@@ -28,6 +28,7 @@ export class ProductsFilterComponent implements OnInit{
   getData(){
     this._productService.getAllCategories().subscribe(res=>{
       this.categories = res;
+      this.categories.sort((a, b) => (a?.category || "").localeCompare(b?.category || ""));
     })
   }
 

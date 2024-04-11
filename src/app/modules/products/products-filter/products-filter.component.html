@@ -16,14 +16,9 @@
                           <label for="exampleSelect1" class="form-label mt-3">Categoria</label>
                           <select (input)="setCategory($event)" class="form-select" >
                             <option selected value="all">Todas</option>
-                            @for(category of this.categories; track category.id){
-                              <option selected value={{category.id}}>{{category.category}}</option>
+                            @for(category of this.categories; track category.id_category){
+                              <option selected value={{category.id_category}}>{{category.category}}</option>
                             }
-                            <!-- <option selected value="all">Todas</option>
-                            <option value="jewelery">Joyeria</option>
-                            <option value="men's clothing">Ropa de hombre</option>
-                            <option value="women's clothing">Ropa de mujer</option>
-                            <option value="electronics">Electronica</option> -->
                           </select>
                         </div>
                   </fieldset>

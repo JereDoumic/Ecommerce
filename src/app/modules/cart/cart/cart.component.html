@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
         <div class="col left-div p-4">
-            @for(product of this.productList; track product.id){
+            @for(product of this.productList; track product.id_product){
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-md-4">
@@ -33,7 +33,7 @@
             <div class="card border-primary mb-3" style="max-width: 20rem;">
                 <div class="card-header">Resumen de la compra: </div>
                 <div class="card-body">
-                  <p>productos: {{this.quantity}}</p>
+                  <p>productos: {{this.quantity}} </p>
                   <h5 class="card-text">total: ${{this.total}}</h5>
                 </div>
               </div>

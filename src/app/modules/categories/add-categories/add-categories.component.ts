@@ -33,12 +33,18 @@ export class AddCategoriesComponent implements OnInit{
 
   addCategory(){
     const CATEGORY: Category = {
-      id: this.getLastId(),
+      id_category: this.getLastId(),
       category: this.categoryForm.value.category
     }
-    this.productService.addCategory(CATEGORY).subscribe(res=>{
-      this.toastr.success("La categoria ha sido agregada con éxito", "Categoria agregada con éxito");
-    })
+    if(this.categoryForm.valid === true){
+      this.productService.addCategory(CATEGORY).subscribe(res=>{
+        this.categoryForm.reset();
+        location.reload();
+        this.toastr.success("La categoria ha sido agregada con éxito", "Categoria agregada con éxito");
+      })
+    } else{
+        this.toastr.error("complete todos los campos", "Error");
+    }
   }
 
   getLastId(){

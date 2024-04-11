@@ -19,7 +19,7 @@ export class ListProductsComponent implements OnInit, OnChanges{
   modalSwitch = false;
   product?: Product;
   categoriesList: Category[] = [];
-  user = "";
+  user = "addmin";
   
   @Input() priceSince = 0;
   @Input() category = "all";
@@ -42,12 +42,13 @@ export class ListProductsComponent implements OnInit, OnChanges{
     this._productService.getAllCategories().subscribe(res => {
       this.categoriesList = res;
     });
+    
   }
 
   ngOnChanges(changes: SimpleChanges){
     this.productList = this.originalArray;
     let newArray = this.productList.filter(product => product.price > this.priceSince
-      && (product.category === this.category || this.category === "all")
+      && (product.id_category === Number(this.category) || this.category === "all")
       && (product.title.toLowerCase().includes(this.name)));
     newArray.sort((a, b) => a.price - b.price);
     this.productList = newArray;
@@ -67,38 +68,41 @@ export class ListProductsComponent implements OnInit, OnChanges{
     this.productForm.patchValue({
       title: product.title,
       description: product.description,
-      category: product.category,
-      price: product.price
+      category: product.id_category,
+      price: product.price,
+      image: product.image
     })
   }
 
   modifyProduct(){
     const PRODUCT: Product = {
-      id: this.product?.id || null,
+      id_product: this.product?.id_product || null,
       title: this.productForm.value.title,
       description: this.productForm.value.description,
-      category: this.productForm.value.category,
+      id_category: Number(this.productForm.value.category),
       price: this.productForm.value.price,
       image: this.product?.image || null,
       quantity: 1
     }
-    console.log(this.product?.id);
-    this._productService.updateProduct(PRODUCT).subscribe(res=>{
+    
+    this._productService.updateProduct(PRODUCT).subscribe({
+      next: res=> {
       this.productForm.reset();
       location.reload();
       this.toastr.success("El producto se ha actualizado con éxito", "Producto actualizado con éxito");
-    }, error=> {
+    }, error: error=> {
       this.toastr.error("El producto no ha podido ser actualizado", "No se pudo actulizar el producto");
-    })
+    }});
   }
 
   deleteProduct(){
-    this._productService.deleteProduct(this.product!).subscribe(res=>{
+    this._productService.deleteProduct(this.product!).subscribe({
+      next: res=>{
       location.reload();
       this.toastr.success("El producto se ha eliminado con éxito", "Producto eliminado con éxito");
-    }, error=> {
+    }, error: error=> {
       this.toastr.error("El producto no ha podido ser eliminado", "No se pudo eliminar el producto");
-    })
+    }});
   }
 
   deleteModal(product: Product){

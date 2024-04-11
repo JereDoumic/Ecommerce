@@ -42,8 +42,10 @@ export class CartComponent implements OnInit{
   }
 
   removeToCart(product: Product){
+    console.log(product.quantity);
     this.dataService.removeQuantity();
     this.cartService.removeOneItemToCart(product);
+    console.log(product.quantity);
   }
 
   removeProductToCart(product: Product){

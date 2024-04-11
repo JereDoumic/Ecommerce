@@ -39,7 +39,7 @@ export class AddProductsComponent implements OnInit{
       this.categoriesList = res;
     });
     
-    this.productService.getAllProductsJson().subscribe(res => {
+    this.productService.getAllProducts().subscribe(res => {
       this.productList = res;
     });
   }
@@ -47,21 +47,28 @@ export class AddProductsComponent implements OnInit{
 
   addProduct(){
     const PRODUCT: Product = {
-      id: this.getLastId(),
+      id_product: this.getLastId(),
       title: this.productForm.value.title,
       description: this.productForm.value.description,
-      category: this.productForm.value.category,
+      id_category: Number(this.productForm.value.category),
       price: this.productForm.value.price,
-      image: this.productForm.value.image,
-      quantity: 1
+      image: this.productForm.value.image
     }
-    this.productService.addProduct(PRODUCT).subscribe(res=>{
-      this.productForm.reset();
-      this.toastr.success("El producto se ha registrado con éxito", "Producto registrado con éxito");
-    }, error=> {
-      this.toastr.error("El producto no ha podido ser registrado", "No se pudo registrar el producto");
-    })
-  }
+    console.log(PRODUCT);
+    if(this.productForm.valid === true){
+      this.productService.addProduct(PRODUCT).subscribe({
+        next: res => {
+          this.productForm.reset();
+          this.toastr.success("El producto se ha registrado con éxito", "Producto registrado con éxito");
+        },
+        error: error => {
+          this.toastr.error("El producto no ha podido ser registrado", "No se pudo registrar el producto");
+        }
+      });
+    } else{
+      this.toastr.error("complete todos los campos", "Error");
+    }
+  } 
 
   getLastId(){
     let id = 1;

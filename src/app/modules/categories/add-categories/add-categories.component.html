@@ -2,17 +2,18 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-6 offset-3">
+            <h2>Agregar Categoria</h2>
             <div class="form-group">
                 <form autocomplete="off" [formGroup]="categoryForm" (ngSubmit)="addCategory()">
                     <label for="exampleInputEmail1" class="form-label mt-4">Categoria: </label>
                     <input type="text" class="form-control"
                              placeholder="Ingrese el titulo" formControlName="category">
-
-                    
                     <br> <br>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
                 </form>
             </div>
         </div>
     </div>
+
+    <app-delete-categories></app-delete-categories>
 </div>

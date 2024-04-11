@@ -1,14 +1,14 @@
 export interface IProduct{
-    id: number | null;
+    id_product: number | null;
     title: string | null;
-    category: number | null;
+    id_category: number | null;
     description: string | null;
     price: number | null;
-    quantity: number | null;
+    quantity?: number | null;
 }
 
 export interface ICategory{
-    id: number | null;
+    id_category: number | null;
     category: string | null;
 }
 
