@@ -15,6 +15,14 @@
     {
       "id": "4",
       "category": "Electronica"
+    },
+    {
+      "id": "5",
+      "category": "Electrodomésticos "
+    },
+    {
+      "id": 6,
+      "category": "Herramientas"
     }
   ],
   "products": [

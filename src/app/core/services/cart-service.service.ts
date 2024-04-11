@@ -32,7 +32,7 @@ export class CartService {
       let index = -1;
       for(let i = 0; i < cart.length; i++){
         let productAux: Product = cart[i];
-        if(productAux.id === product.id){
+        if(productAux.id_product === product.id_product){
           index = i;
           break;
         }
@@ -69,9 +69,8 @@ export class CartService {
     let cartStorage = sessionStorage.getItem("cart") as string;
     let cart = JSON.parse(cartStorage);
     let index = -1;
-    
     for(let i = 0; i < cart.length; i++){
-      if(cart[i].id == product.id){
+      if(cart[i].id_product == product.id_product){
         index = i;
       }
     }
@@ -94,7 +93,7 @@ export class CartService {
     let cart = JSON.parse(cartStorage);
     let index = -1;
     for(let i = 0; i < cart.length; i++){
-      if(cart[i].id === product.id){
+      if(cart[i].id_product === product.id_product){
         index = i;
         break;
       }

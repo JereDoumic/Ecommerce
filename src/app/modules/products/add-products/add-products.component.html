@@ -16,8 +16,8 @@
                     <br>
                     <label for="exampleInputEmail1" class="form-label mt-4">Categoria: </label>
                     <select class="form-select" id="exampleSelect1" formControlName="category">
-                        @for(category of categoriesList; track category.id){
-                            <option value="{{category.id}}">{{category.category}}</option>
+                        @for(category of categoriesList; track category.id_category){
+                            <option value="{{category.id_category}}">{{category.category}}</option>
                         }
                     </select>
 

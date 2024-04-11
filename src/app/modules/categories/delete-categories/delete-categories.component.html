@@ -1,0 +1,71 @@
+<div class="row mt-5">
+    <div class="col-6 offset-3">
+        <h2>Actualizar o Eliminar una categoria</h2>
+        <label for="exampleInputEmail1" class="form-label mt-4">Categoria: </label>
+        <input type="text" [(ngModel)] = "filter" (input)="filterCategorys()" class="form-control" placeholder="Buscar categoria...">
+    </div>
+
+    <div class="mt-4 col-3 offset-3">
+        @for(category of categoriesList; track category.id_category){
+            <div class="col text-center">
+            <div class="card mt-4" style="width: 18rem;" >
+              <div class="card-body">
+                <h5 class="card-title">{{category.category}}</h5>
+               
+                  <a  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    (click)="updateModal(category)">MODIFICAR</a>
+                  <a  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDelete"
+                    (click)="deleteModal(category)">ELIMINAR</a>
+              </div>
+            </div>
+          </div>
+          }
+    </div>
+</div>
+
+<!-- Modal Delete Product -->
+<div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Seguro que desea eliminar esta categoria?</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <div class="card mt-4" style="width: 18rem;" >
+            <div class="card-body">
+              <h5 class="card-title">{{category?.category}}</h5>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="deleteCategory()">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+<!-- Modal -->
+<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Categoria</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body"> 
+          <form autocomplete="off" [formGroup]="categoryForm">
+            <label for="exampleInputEmail1" class="form-label mt-4">Titulo: </label>
+            <input type="text" class="form-control"
+                     placeholder="Ingrese el titulo" formControlName="category">   
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="updateCategory()">Guardar Cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
