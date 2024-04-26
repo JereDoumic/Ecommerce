@@ -1,1 +1,63 @@
-<p>card works!</p>
+<div class="card">
+    <div class="card-body">
+        <h5 class="titulo"> Completar datos de la tarjeta
+        </h5>
+        <form [formGroup] ="forms" (ngSubmit)="onSubmit()">
+            <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                    <i class="fa-solid fa-circle-user" 
+                        [class.green-icon] = "this.forms.get('cardHolder')?.valid"
+                        [class.red-icon] = "this.forms.get('cardHolder')?.invalid &&
+                        this.forms.get('cardHolder')?.touched">
+                    </i>
+                </span>
+                <input type="text" class="form-control" placeholder="titular" formControlName="cardHolder">
+            </div>
+            <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                    <i class="fa-solid fa-credit-card" 
+                    [class.green-icon] ="this.forms.get('cardNumber')?.valid"
+                    [class.red-icon] ="this.forms.get('cardNumber')?.invalid &&
+                    this.forms.get('cardNumber')?.touched">
+                </i>
+                </span>
+                <input type="text" class="form-control" placeholder="tarjeta" formControlName="cardNumber" 
+                 maxlength="16" minlength="16">
+            </div>
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="input-group input-group-lg mb-3">
+                        <span class="input-group-text">
+                            <i class="fa-solid fa-calendar-days"
+                                [class.green-icon] ="this.forms.get('expirationDate')?.valid"
+                                [class.red-icon] ="this.forms.get('expirationDate')?.invalid &&
+                                this.forms.get('expirationDate')?.touched">
+                            </i>
+                        </span>
+                        <input type="text" class="form-control" placeholder="MM/YY" formControlName="expirationDate"
+                        maxlength="5" minlength="5">
+                    </div>
+                </div>
+                <div class="col-lg-5"> 
+                    <div class="input-group input-group-lg mb-3">
+                        <span class="input-group-text">
+                            <i class="fa-solid fa-lock"
+                                [class.green-icon] ="this.forms.get('cvv')?.valid"
+                                [class.red-icon] ="this.forms.get('cvv')?.invalid &&
+                                this.forms.get('cvv')?.touched">
+                            </i>
+                        </span>
+                        <input type="password" class="form-control" placeholder="CVV" formControlName="cvv"
+                        maxlength="3" minlength="3">
+                    </div>
+                </div>
+            </div>
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary btn-lg" type="submit" [disabled]="forms.invalid">
+                    Realizar compra
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+    

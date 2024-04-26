@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
         <div class="col-5 offset-3">
-            <h1 class="p-5">Login</h1>
+            <h1 class="p-5 text-center">Iniciar Sesión</h1>
 
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             
@@ -26,9 +26,9 @@
                 }
             </div>
 
-            <div class="p-4">
-                <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Iniciar sesión</button>
-                <button type="button" class="btn btn-secondary ml-3">Registrarse</button>
+            <div class="p-4 text-center">
+                <button type="submit" class="btn btn-primary" style="margin-right: 15px;" [disabled]="loginForm.invalid">Iniciar sesión</button>
+                <button type="button" class="btn btn-secondary " style="margin-left: 15px;" (click)="goRegister()">Registrarse</button>
             </div>
         </form>
         </div>

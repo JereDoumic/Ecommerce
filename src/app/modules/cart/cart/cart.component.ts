@@ -13,6 +13,7 @@ export class CartComponent implements OnInit{
   productList: Product[] = [];
   quantity: number = 0;
   total: number = 0;
+  userToken = Number(localStorage.getItem("token"));
 
   constructor(private dataService: DataService, private cartService: CartService){
     
@@ -42,10 +43,8 @@ export class CartComponent implements OnInit{
   }
 
   removeToCart(product: Product){
-    console.log(product.quantity);
     this.dataService.removeQuantity();
     this.cartService.removeOneItemToCart(product);
-    console.log(product.quantity);
   }
 
   removeProductToCart(product: Product){
@@ -57,6 +56,7 @@ export class CartComponent implements OnInit{
     } else{
       this.dataService.removeQuantity();
     }
+    location.reload();
   }
 
   clearCart(){
@@ -64,5 +64,12 @@ export class CartComponent implements OnInit{
     this.total = 0;
     this.cartService.clearCart();
     this.dataService.clearQuantity();
+  }
+
+  buy(buy: boolean){
+    if(buy){
+      this.clearCart();
+      location.reload();
+    }
   }
 }

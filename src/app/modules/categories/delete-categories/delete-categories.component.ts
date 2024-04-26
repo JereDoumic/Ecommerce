@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from '../../../core/Models';
+import { Category, Product } from '../../../core/Models';
 import { ProductsService } from '../../products/services/products-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -11,6 +11,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class DeleteCategoriesComponent implements OnInit{
   
+  productList: Product[] = [];
   categoriesListOriginal: Category[] = [];
   categoriesList: Category[] = [];
   category?: Category;
@@ -28,7 +29,10 @@ export class DeleteCategoriesComponent implements OnInit{
     this.productService.getAllCategories().subscribe(res=>{
       this.categoriesList = res;
       this.categoriesListOriginal = this.categoriesList;
-      this.categoriesList.sort((a, b) => (a?.category || "").localeCompare(b?.category || ""));
+      this.categoriesList.sort((a, b) => (a?.category || "").localeCompare(b?.category || ""))
+    })
+    this.productService.getAllProducts().subscribe(res=>{
+      this.productList = res;
     })
   }
 
@@ -59,14 +63,28 @@ export class DeleteCategoriesComponent implements OnInit{
     this.category = category;
   }
 
+  //Chequea que ningun producto este asignado a esa categoria
+  searchCategoryInProducts(category: Category){
+    for(let product of this.productList){
+      if(product.id_category === category.id_category){
+        return true;
+      }
+    }
+    return false;
+  }
+
   deleteCategory(){
-    this.productService.deleteCategory(this.category!).subscribe({
-      next: res=>{
-      location.reload();
-      this.toastr.success("La categoria se ha eliminado con éxito", "Categoria eliminada con éxito");
-    }, error: error=> {
-      this.toastr.error("La categoria no ha podido ser eliminada", "No se pudo eliminar la categoria");
-    }});
+    if(this.searchCategoryInProducts(this.category!) === false){
+      this.productService.deleteCategory(this.category!).subscribe({
+        next: res=>{
+        location.reload();
+        this.toastr.success("La categoria se ha eliminado con éxito", "Categoria eliminada con éxito");
+      }, error: error=> {
+        this.toastr.error("La categoria no ha podido ser eliminada", "No se pudo eliminar la categoria");
+      }});
+    } else{
+      this.toastr.error("No se puede eliminar la categoria, tiene productos asignados", "La categoria no puede ser eliminada");
+    }
   }
 
   updateCategory(){

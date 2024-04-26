@@ -1,6 +1,7 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../../core/services/data-service.service';
+import { AuthService } from '../../modules/auth/services/auth-service.service';
 
 
 @Component({
@@ -11,8 +12,9 @@ import { DataService } from '../../core/services/data-service.service';
 export class NavBarComponent implements OnInit{
 
   quantity: number | null = 0;
+  userToken: number | undefined; 
 
-  constructor(private router: Router, private dataService: DataService){
+  constructor(private router: Router, private dataService: DataService, private authService: AuthService){
 
   }
 
@@ -20,6 +22,7 @@ export class NavBarComponent implements OnInit{
     this.dataService.getQuiantity().subscribe(res => {
       this.quantity = res;
     });
+    this.userToken = Number(localStorage.getItem("token"));
   }
 
   goAddProduct(){
@@ -32,6 +35,12 @@ export class NavBarComponent implements OnInit{
 
   goLogin(){
     this.router.navigate(['auth/login']);
+  }
+
+  logout(){
+    this.authService.logout();
+    this.router.navigate(['landing']);
+    location.reload();
   }
 
   goCart(){

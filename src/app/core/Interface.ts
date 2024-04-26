@@ -13,7 +13,8 @@ export interface ICategory{
 }
 
 export interface IUser{
-    id: number | null;
+    id_user: number | null;
     email: string | null;
     password: string | null;
+    userName: string | null;
 }
