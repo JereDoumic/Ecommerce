@@ -11,15 +11,27 @@
               <span class="visually-hidden">(current)</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link cursor" (click)="goAddProduct()">Agregar Producto</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link cursor" (click)="goAddCategory()">Administrar Categorias</a>
-          </li>
-          <li>
-            <a class="nav-link cursor" (click)="goLogin()">Iniciar sesion</a>
-          </li>
+          @if(userToken == 14){
+            <li class="nav-item">
+              <a class="nav-link cursor" (click)="goAddProduct()">Agregar Producto</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link cursor" (click)="goAddCategory()">Administrar Categorias</a>
+            </li>
+          }
+
+          @if(userToken == 0){
+            <li>
+              <a class="nav-link cursor" (click)="goLogin()">Iniciar sesion</a>
+            </li>
+          }
+
+          @if(userToken! > 0){
+            <li>
+              <a class="nav-link cursor" (click)="logout()">Cerrar sesión</a>
+            </li>
+          }
+
           <li class="pl-5">
             <div class="cart">
               <i class="fa-solid fa-cart-shopping cursor" (click)="goCart()"></i>

@@ -5,3 +5,12 @@
 .col{
     display: flex;
 }
+
+@media (max-width: 768px) {
+    .card-div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+  }

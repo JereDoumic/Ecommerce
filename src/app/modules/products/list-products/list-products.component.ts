@@ -19,7 +19,7 @@ export class ListProductsComponent implements OnInit, OnChanges{
   modalSwitch = false;
   product?: Product;
   categoriesList: Category[] = [];
-  user = "addmin";
+  userToken!: number;
   
   @Input() priceSince = 0;
   @Input() category = "all";
@@ -42,7 +42,8 @@ export class ListProductsComponent implements OnInit, OnChanges{
     this._productService.getAllCategories().subscribe(res => {
       this.categoriesList = res;
     });
-    
+   
+    this.userToken = Number(localStorage.getItem("token"));
   }
 
   ngOnChanges(changes: SimpleChanges){

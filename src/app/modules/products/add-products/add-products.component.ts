@@ -54,7 +54,7 @@ export class AddProductsComponent implements OnInit{
       price: this.productForm.value.price,
       image: this.productForm.value.image
     }
-    console.log(PRODUCT);
+   
     if(this.productForm.valid === true){
       this.productService.addProduct(PRODUCT).subscribe({
         next: res => {

@@ -32,13 +32,15 @@ export class Category implements ICategory{
 }
 
 export class User implements IUser{
-    id: number | null;
+    id_user: number | null;
     email: string | null;
     password: string | null;
+    userName: string | null;
     
-    constructor(id: number, email: string, password: string){
-        this.id = id;
+    constructor(id: number, email: string, password: string, userName: string){
+        this.id_user = id;
         this.email = email;
         this.password = password;
+        this.userName = userName;
     }
 }

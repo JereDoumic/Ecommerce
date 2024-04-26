@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingPageComponent } from './modules/landing/landing-page/landing-page.component';
+import { authGuard } from './modules/auth/services/guards/auth-guard.guard';
+import { Error404Component } from './shared/error404/error404.component';
 
 const routes: Routes = [
   {
@@ -27,7 +29,16 @@ const routes: Routes = [
    },
    {
      path: 'categories',
-     loadChildren:() => import("./modules/categories/categories.module").then(m =>m.CategoriesModule)
+     loadChildren:() => import("./modules/categories/categories.module").then(m =>m.CategoriesModule),
+     canActivate: [authGuard]
+  },
+  {
+    path: '404',
+    component: Error404Component
+  },
+  {
+    path: '**',
+    redirectTo: '404'
   }
    
 ];

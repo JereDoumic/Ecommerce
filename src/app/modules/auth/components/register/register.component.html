@@ -1,1 +1,47 @@
-<p>register works!</p>
+<app-nav-bar></app-nav-bar>
+<div class="container">
+    <div class="row">
+        <div class="col-5 offset-3">
+            <h1 class="p-5 text-center">Registrarse</h1>
+
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            
+            <div class="has-success">
+                <label class="form-label mt-4" for="inputValid">Email</label>
+                <input type="text" class="form-control" placeholder="ingrese su email" formControlName="email"
+                [class.is-valid] = "isValidField('email') == null"
+                [class.is-invalid] = "isValidField('email') != null && this.registerForm.get('email')?.touched">
+                @if(isValidField('email')){
+                        <div class="invalid-feedback">{{ getFieldError('email') }}</div>
+                }
+            </div>
+            
+            <div class="has-success">
+                <label class="form-label mt-4" for="inputInvalid">Nombre de usuario</label>
+                <input type="text" class="form-control" placeholder="ingrese su nombre de usuario" formControlName="userName"
+                 [class.is-valid] = "isValidField('userName') == null"
+                 [class.is-invalid] = "isValidField('userName') != null && this.registerForm.get('password')?.touched">
+                @if(isValidField('userName')){
+                        <div class="invalid-feedback">{{ getFieldError('userName') }}</div>
+                }
+            </div>
+
+            <div class="has-success">
+                <label class="form-label mt-4" for="inputInvalid">Contraseña</label>
+                <input type="password" class="form-control" placeholder="ingrese su contraseña" formControlName="password"
+                 [class.is-valid] = "isValidField('password') == null"
+                 [class.is-invalid] = "isValidField('password') != null && this.registerForm.get('password')?.touched">
+                @if(isValidField('password')){
+                        <div class="invalid-feedback">{{ getFieldError('password') }}</div>
+                }
+            </div>
+
+
+            <div class="p-4 text-center">
+                <button type="submit" class="btn btn-primary " style="margin-right: 15px;" [disabled]="registerForm.invalid">Registrarse</button>
+                <button type="button" class="btn btn-secondary" style="margin-left: 15px;" (click)="goLogin()">Iniciar sesión</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>

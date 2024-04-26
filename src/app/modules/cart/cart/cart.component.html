@@ -29,14 +29,44 @@
                 </div>
             }
         </div>
-        <div class="col right-div p-2">
+        <div class="col right-div p-2 ">
             <div class="card border-primary mb-3" style="max-width: 20rem;">
                 <div class="card-header">Resumen de la compra: </div>
                 <div class="card-body">
                   <p>productos: {{this.quantity}} </p>
                   <h5 class="card-text">total: ${{this.total}}</h5>
                 </div>
+                @if(userToken != 0){
+                  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" [disabled]="this.productList.length <= 0">Iniciar Compra</button>
+                } @else{
+                  <h4 > Debe iniciar sesion para realizar una compra</h4>
+                }
               </div>
         </div>
     </div>
 </div>
+
+<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Detalles de la compra:</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            @for(product of this.productList; track product.id_product){
+              <br>
+              <h6>x{{product.quantity}} {{product.title}}</h6>
+              <span>${{(product.price!) * (product.quantity!)}}</span>
+            }
+            <h6>Envio</h6>
+            <span>$25</span>
+            <h5>Total: ${{this.total + 25}}</h5>
+        </div>
+        <app-card [productList]="this.productList" [total]="this.total + 25" (buy)="buy($event)"></app-card>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
